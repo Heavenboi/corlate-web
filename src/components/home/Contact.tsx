@@ -194,7 +194,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="font-medium">Phone</p>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">+27 (75) 261-4220</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -203,7 +203,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">hello@corlate.com</p>
+                    <p className="text-muted-foreground">hello@corlate.co.za</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -212,7 +212,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="font-medium">Address</p>
-                    <p className="text-muted-foreground">123 Business St, Suite 100<br />New York, NY 10001</p>
+                    <p className="text-muted-foreground">35 Popular Road, Primrose<br />Germiston</p>
                   </div>
                 </div>
               </div>
