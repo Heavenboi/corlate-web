@@ -69,7 +69,7 @@ export function Portfolio() {
   };
   
   return (
-    <section ref={sectionRef} className="py-20 px-6 md:px-10 bg-secondary/0 text-white">
+    <section ref={sectionRef} className="py-20 px-6 md:px-10 text-white">
       <div className="max-w-7xl mx-auto">
         <SectionTitle 
           eyebrow="Our Work" 
