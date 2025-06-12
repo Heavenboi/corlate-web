@@ -108,7 +108,7 @@ export function Navbar() {
             "md:hidden fixed inset-0 top-[57px] z-40 animate-fade-in transition-all duration-300",
             isScrolled
               ? "bg-white backdrop-blur-md shadow-lg"
-              : "bg-background/95 backdrop-blur-md"
+              : "bg-white"
           )}
         >
           <nav className="flex flex-col items-center justify-center text-center p-6 space-y-6">
