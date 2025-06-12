@@ -103,8 +103,15 @@ export function Navbar() {
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[57px] bg-background/95 backdrop-blur-md z-40 animate-fade-in">
-          <nav className="flex flex-col p-6 space-y-6">
+        <div
+          className={cn(
+            "md:hidden fixed inset-0 top-[57px] z-40 animate-fade-in transition-all duration-300",
+            isScrolled
+              ? "bg-white backdrop-blur-md shadow-lg"
+              : "bg-background/95 backdrop-blur-md"
+          )}
+        >
+          <nav className="flex flex-col items-center justify-center text-center p-6 space-y-6">
             <NavLink
               to="/"
               className={({ isActive }) =>
