@@ -82,7 +82,7 @@ const About = () => {
               <div>
                 <h2 className="text-3xl font-bold mb-6">Our Story</h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Founded in 2015, Corlate began with a simple mission: to help businesses navigate the increasingly complex digital landscape and achieve meaningful results.
+                  Corlate was founded with a simple mission: to help businesses navigate the increasingly complex digital landscape and achieve meaningful results.
                 </p>
                 <p className="text-lg text-muted-foreground mb-6">
                   What started as a small team of three passionate digital marketers has grown into a comprehensive digital agency with expertise spanning web development, SEO, content marketing, and more.
