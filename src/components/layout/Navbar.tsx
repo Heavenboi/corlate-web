@@ -45,7 +45,7 @@ export function Navbar() {
             className={({ isActive }) =>
               cn(
                 "text-sm font-medium transition-colors hover:text-primary",
-                isActive ? "text-primary" : "text-foreground"
+                isActive ? "text-primary" : "text-[#4f5873]"
               )
             }
           >
@@ -56,7 +56,7 @@ export function Navbar() {
             className={({ isActive }) =>
               cn(
                 "text-sm font-medium transition-colors hover:text-primary",
-                isActive ? "text-primary" : "text-foreground"
+                isActive ? "text-primary" : "text-[#4f5873]"
               )
             }
           >
@@ -67,7 +67,7 @@ export function Navbar() {
             className={({ isActive }) =>
               cn(
                 "text-sm font-medium transition-colors hover:text-primary",
-                isActive ? "text-primary" : "text-foreground"
+                isActive ? "text-primary" : "text-[#4f5873]"
               )
             }
           >
@@ -78,7 +78,7 @@ export function Navbar() {
             className={({ isActive }) =>
               cn(
                 "text-sm font-medium transition-colors hover:text-primary",
-                isActive ? "text-primary" : "text-foreground"
+                isActive ? "text-primary" : "text-[#4f5873]"
               )
             }
           >
