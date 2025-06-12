@@ -103,7 +103,7 @@ export function Navbar() {
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[57px] bg-background/95 backdrop-blur-md z-40 animate-fade-in">
+        <div className="md:hidden fixed inset-0 top-[57px] bg-white backdrop-blur-md z-40 animate-fade-in">
           <nav className="flex flex-col items-center justify-center text-center p-6 space-y-6 bg-white">
             <NavLink
               to="/"
