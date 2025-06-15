@@ -221,7 +221,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="font-medium">Address</p>
-                    <p className="text-muted-foreground">35 Popular Road, Primrose<br />Germiston</p>
+                    <p className="text-muted-foreground">35 Poplar Road, Primrose<br />Germiston</p>
                   </div>
                 </div>
               </div>
