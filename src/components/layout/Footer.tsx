@@ -21,8 +21,8 @@ export function Footer() {
           </p>
           <div className="flex space-x-4 pt-2">
             <SocialLink href="https://twitter.com" icon={<Twitter className="h-4 w-4" />} />
-            <SocialLink href="https://facebook.com" icon={<Facebook className="h-4 w-4" />} />
-            <SocialLink href="https://instagram.com" icon={<Instagram className="h-4 w-4" />} />
+            <SocialLink href="https://facebook.com/profile.php?id=61576069366689" icon={<Facebook className="h-4 w-4" />} />
+            <SocialLink href="https://instagram.com/corlate.technologies" icon={<Instagram className="h-4 w-4" />} />
             <SocialLink href="https://linkedin.com" icon={<Linkedin className="h-4 w-4" />} />
           </div>
         </div>
