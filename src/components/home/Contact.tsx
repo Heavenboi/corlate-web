@@ -194,7 +194,16 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="font-medium">Phone</p>
-                    <p className="text-muted-foreground">+27 (75) 261-4220</p>
+                    <p className="text-muted-foreground">+27 (752) 614-220</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Phone</p>
+                    <p className="text-muted-foreground">+27 (752) 614-220</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
