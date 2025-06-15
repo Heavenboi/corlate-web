@@ -58,8 +58,14 @@ export function Footer() {
             <li className="flex items-start">
               <MapPin className="h-5 w-5 text-primary mr-3 shrink-0 mt-0.5" />
               <span className="text-sm text-white/80">
-                35 Popular Road, Primrose, Germiston
+                35 Poplar Road, Primrose, Germiston
               </span>
+            </li>
+            <li className="flex items-center">
+              <Phone className="h-5 w-5 text-primary mr-3 shrink-0" />
+              <a href="tel:+15551234567" className="text-sm text-white/80 hover:text-white transition-colors">
+                +27 (752) 614-220
+              </a>
             </li>
             <li className="flex items-center">
               <Phone className="h-5 w-5 text-primary mr-3 shrink-0" />
