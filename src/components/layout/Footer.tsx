@@ -1,130 +1,217 @@
-
-import { cn } from "@/lib/utils";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import corlateLogo from "@/assets/corlate-logo-two.png";
 
-export function Footer() {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   return (
-    <footer className="bg-secondary py-16 px-6 md:px-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        {/* Company Info */}
-        <div className="space-y-4">
-          <Link to="/" className="inline-block">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-              Corlate
-            </span>
-          </Link>
-          <p className="text-white/80 text-sm max-w-xs">
-            We deliver innovative digital marketing and web development solutions tailored to your business needs.
-          </p>
-          <div className="flex space-x-4 pt-2">
-            <SocialLink href="https://twitter.com" icon={<Twitter className="h-4 w-4" />} />
-            <SocialLink href="https://facebook.com/profile.php?id=61576069366689" icon={<Facebook className="h-4 w-4" />} />
-            <SocialLink href="https://instagram.com/corlate.technologies" icon={<Instagram className="h-4 w-4" />} />
-            <SocialLink href="https://linkedin.com" icon={<Linkedin className="h-4 w-4" />} />
+    <footer className="bg-card border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <Link to="/" className="flex items-center space-x-2" aria-label="Home">
+              <div className="bg-gradient-to-br from-[#e3f0ff]/70 via-white/60 to-[#f3e5f5]/70 backdrop-blur-md border border-white/40 shadow-xl rounded-full p-2 flex items-center justify-center transition-all duration-300 hover:shadow-2xl hover:ring-2 hover:ring-primary/30">
+                <img
+                  src={corlateLogo}
+                  alt="Corlate Technologies Logo"
+                  className="h-10 w-auto max-w-[160px] object-contain transition-transform duration-200 hover:scale-110"
+                />
+              </div>
+            </Link>
+            <p className="text-muted-foreground">
+              A forward-thinking digital services firm dedicated to empowering South African SMBs with innovative solutions.
+            </p>
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://www.linkedin.com/company/corlate-tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/corlatetechnology"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://twitter.com/corlatetech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/corlatetech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/services/web-development"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Website Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/digital-marketing"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Digital Marketing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/tech-support"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Tech Support & IT
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/design-software"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Design & Software
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/seo"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  SEO Optimization
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/mobile-apps"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Mobile App Development
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/about"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/case-studies"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/partner"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Partner With Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-primary mt-0.5" />
+                <span className="text-muted-foreground">
+                  35 Poplar Road, Primrose<br />
+                  Germiston, Gauteng<br />
+                  South Africa
+                </span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Phone className="h-5 w-5 text-primary" />
+                <a
+                  href="tel:+27752614220"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  +27 (752) 614-220
+                </a>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 text-primary" />
+                <a
+                  href="mailto:hello@corlate.co.za"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  hello@corlate.co.za
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        
-        {/* Quick Links */}
-        <div>
-          <h3 className="text-base font-medium mb-4 text-white">Quick Links</h3>
-          <ul className="space-y-3">
-            <FooterLink href="/">Home</FooterLink>
-            <FooterLink href="/services">Services</FooterLink>
-            <FooterLink href="/case-studies">Case Studies</FooterLink>
-            <FooterLink href="/about">About Us</FooterLink>
-            <FooterLink href="/contact">Contact</FooterLink>
-          </ul>
-        </div>
-        
-        {/* Services */}
-        <div>
-          <h3 className="text-base font-medium mb-4 text-white">Services</h3>
-          <ul className="space-y-3">
-            <FooterLink href="/services/digital-marketing">Digital Marketing</FooterLink>
-            <FooterLink href="/services/web-development">Web Development</FooterLink>
-            <FooterLink href="/services/seo">SEO</FooterLink>
-            <FooterLink href="/services/social-media">Social Media Marketing</FooterLink>
-            <FooterLink href="/services/content-marketing">Content Marketing</FooterLink>
-          </ul>
-        </div>
-        
-        {/* Contact Info */}
-        <div>
-          <h3 className="text-base font-medium mb-4 text-white">Contact Us</h3>
-          <ul className="space-y-3">
-            <li className="flex items-start">
-              <MapPin className="h-5 w-5 text-primary mr-3 shrink-0 mt-0.5" />
-              <span className="text-sm text-white/80">
-                35 Poplar Road, Primrose, Germiston
-              </span>
-            </li>
-            <li className="flex items-center">
-              <Phone className="h-5 w-5 text-primary mr-3 shrink-0" />
-              <a href="tel:+27752614220" className="text-sm text-white/80 hover:text-white transition-colors">
-                +27 (752) 614-220
-              </a>
-            </li>
-            <li className="flex items-center">
-              <Phone className="h-5 w-5 text-primary mr-3 shrink-0" />
-              <a href="tel:+27696030501" className="text-sm text-white/80 hover:text-white transition-colors">
-                +27 (696) 030-501
-              </a>
-            </li>
-            <li className="flex items-center">
-              <Mail className="h-5 w-5 text-primary mr-3 shrink-0" />
-              <a href="mailto:info@corlate.com" className="text-sm text-white/80 hover:text-white transition-colors">
-                info@corlate.co.za
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto mt-16 pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between items-center">
-        <p className="text-sm text-white/70">
-          © {currentYear} Corlate. All rights reserved.
-        </p>
-        <div className="flex space-x-6 mt-4 md:mt-0">
-          <a href="#" className="text-xs text-white/70 hover:text-white transition-colors">
-            Privacy Policy
-          </a>
-          <a href="#" className="text-xs text-white/70 hover:text-white transition-colors">
-            Terms of Service
-          </a>
-          <a href="#" className="text-xs text-white/70 hover:text-white transition-colors">
-            Cookie Policy
-          </a>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-muted-foreground text-sm">
+              © {currentYear} Corlate Technology. All rights reserved.
+            </p>
+            <div className="flex items-center space-x-6">
+              <Link
+                to="/privacy"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/terms"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                Terms of Service
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
   );
-}
+};
 
-function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
-  return (
-    <a 
-      href={href} 
-      target="_blank" 
-      rel="noreferrer" 
-      className="h-8 w-8 flex items-center justify-center rounded-full bg-white/10 text-white/80 hover:bg-primary hover:text-white transition-colors"
-    >
-      {icon}
-    </a>
-  );
-}
-
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <li>
-      <Link 
-        to={href}
-        className="text-sm text-white/80 hover:text-white transition-colors"
-      >
-        {children}
-      </Link>
-    </li>
-  );
-}
+export default Footer;

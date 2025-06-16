@@ -1,13 +1,9 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{js,ts,jsx,tsx}",
 	],
 	prefix: "",
 	theme: {
@@ -109,7 +105,7 @@ export default {
 				'float': 'float 6s ease-in-out infinite'
 			},
 			fontFamily: {
-				sans: ['SF Pro Display', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
 				mono: ['SF Mono', 'ui-monospace', 'monospace']
 			},
 			transitionDuration: {
