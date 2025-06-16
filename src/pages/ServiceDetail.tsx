@@ -1,8 +1,8 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { ArrowRight } from "lucide-react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { AnimatedCard } from "@/components/ui/AnimatedCard";
-import { ArrowRight, CheckCircle } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
