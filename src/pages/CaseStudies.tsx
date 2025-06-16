@@ -1,192 +1,206 @@
-
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { ArrowRight } from "lucide-react";
+import { Lightbulb, Briefcase, Store, Smartphone, Globe, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { SectionContainer } from "@/components/layout/Container";
 
-const categories = ["All", "Digital Marketing", "Web Development", "Mobile Development", "SEO Optimization"];
-
-const caseStudies = [
+const processSteps = [
   {
-    id: "case1",
-    title: "E-commerce Conversion Optimization",
-    category: "Digital Marketing",
-    image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
-    link: "/case-studies/e-commerce-optimization",
-    description: "Increased conversion rates by 45% for an e-commerce client through strategic A/B testing and UX improvements."
+    icon: <Lightbulb className="h-8 w-8 text-primary" />,
+    title: "Discovery & Strategy",
+    description: "We listen to your goals and challenges, then craft a digital strategy tailored to your business."
   },
   {
-    id: "case2",
-    title: "Financial Services Website Redesign",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80",
-    link: "/case-studies/financial-website-redesign",
-    description: "Completely redesigned a financial services website, resulting in a 60% increase in lead generation."
+    icon: <Globe className="h-8 w-8 text-primary" />,
+    title: "Design & Build",
+    description: "Our team designs and develops beautiful, high-performing digital solutions."
   },
   {
-    id: "case3",
-    title: "Restaurant Mobile App",
-    category: "Mobile Development",
-    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
-    link: "/case-studies/restaurant-mobile-app",
-    description: "Developed a mobile ordering app for a restaurant chain that generated $2M in additional revenue within 6 months."
-  },
-  {
-    id: "case4",
-    title: "Healthcare Provider SEO Strategy",
-    category: "SEO Optimization",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    link: "/case-studies/healthcare-seo-strategy",
-    description: "Implemented SEO strategy for a healthcare provider that increased organic traffic by 120% in 3 months."
-  },
-  {
-    id: "case5",
-    title: "B2B Lead Generation Campaign",
-    category: "Digital Marketing",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    link: "/case-studies/b2b-lead-generation",
-    description: "Created a multi-channel lead generation campaign that reduced customer acquisition costs by 35%."
-  },
-  {
-    id: "case6",
-    title: "Retail Mobile App Development",
-    category: "Mobile Development",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    link: "/case-studies/retail-mobile-app",
-    description: "Built a mobile shopping app for a retail chain that increased customer retention by 28%."
-  },
-  {
-    id: "case7",
-    title: "Tech Startup Website Development",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    link: "/case-studies/tech-startup-website",
-    description: "Designed and developed a modern website for a tech startup that helped secure $1.5M in funding."
-  },
-  {
-    id: "case8",
-    title: "Local Business SEO Campaign",
-    category: "SEO Optimization",
-    image: "https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    link: "/case-studies/local-business-seo",
-    description: "Implemented local SEO strategy for a small business that resulted in a 200% increase in foot traffic."
+    icon: <Smartphone className="h-8 w-8 text-primary" />,
+    title: "Launch & Grow",
+    description: "We launch your project, monitor results, and help you grow with ongoing support."
   }
 ];
 
-const CaseStudies = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [filteredCaseStudies, setFilteredCaseStudies] = useState(caseStudies);
-  
-  // Filter case studies based on active category
-  useEffect(() => {
-    if (activeCategory === "All") {
-      setFilteredCaseStudies(caseStudies);
-    } else {
-      setFilteredCaseStudies(caseStudies.filter(item => item.category === activeCategory));
-    }
-  }, [activeCategory]);
-  
-  // Smooth scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-  
+const sampleSolutions = [
+  {
+    icon: <Store className="h-8 w-8 text-primary" />,
+    title: "For Local Businesses",
+    description: "Get a modern website, local SEO, and digital marketing to attract more customers in your area."
+  },
+  {
+    icon: <Briefcase className="h-8 w-8 text-primary" />,
+    title: "For Startups",
+    description: "Launch fast with a scalable web presence, branding, and growth-focused digital strategy."
+  },
+  {
+    icon: <Users className="h-8 w-8 text-primary" />,
+    title: "For Organizations",
+    description: "Empower your team and audience with custom portals, apps, and ongoing tech support."
+  }
+];
+
+const whyBizcore = [
+  {
+    icon: <Globe className="h-8 w-8 text-primary" />,
+    title: "Local Expertise",
+    description: "We understand the South African market and help you stand out locally and globally."
+  },
+  {
+    icon: <Lightbulb className="h-8 w-8 text-primary" />,
+    title: "Innovation",
+    description: "We use the latest technology and creative thinking to deliver unique solutions."
+  },
+  {
+    icon: <Users className="h-8 w-8 text-primary" />,
+    title: "Dedicated Support",
+    description: "Our team is always here to help you grow, every step of the way."
+  }
+];
+
+const Solutions = () => {
   return (
     <div className="min-h-screen">
-      <Navbar />
-      <main>
-        {/* Hero Section */}
-        <section className="py-20 px-6 md:px-10 bg-secondary/30">
-          <div className="max-w-7xl mx-auto">
-            <SectionTitle 
-              eyebrow="Our Work" 
-              title="Case Studies & Success Stories"
-              description="Explore our portfolio of successful projects and see how we've helped businesses achieve their digital goals."
-              align="center"
-              titleSize="large"
-            />
-          </div>
-        </section>
-        
-        {/* Case Studies */}
-        <section className="py-20 px-6 md:px-10 bg-white">
-          <div className="max-w-7xl mx-auto">
-            {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-6 py-2 rounded-full transition-all ${
-                    activeCategory === category
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary/20 text-foreground hover:bg-secondary/30"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+      {/* Hero Section */}
+      <SectionContainer className="relative overflow-hidden py-20 md:py-28">
+        {/* Soft blue/purple gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#e3f0ff] via-[#ede7f6] to-[#f3e5f5] dark:from-[#1a237e]/80 dark:via-[#7e57c2]/60 dark:to-[#0d1333]/80 z-0" />
+        {/* Glassmorphism overlay */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[40vw] max-w-3xl max-h-96 bg-white/30 dark:bg-white/10 rounded-3xl blur-2xl z-0" />
+        {/* Floating SVG shape */}
+        <svg className="absolute right-[-80px] top-[-60px] w-64 h-64 opacity-30 z-0" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#7e57c2" fillOpacity="0.15" d="M44.8,-67.2C57.2,-59.2,65.7,-44.2,70.2,-28.7C74.7,-13.2,75.2,2.8,70.2,16.7C65.2,30.6,54.7,42.4,42.1,51.2C29.5,60,14.7,65.8,-0.7,66.7C-16.1,67.6,-32.2,63.6,-44.2,54.2C-56.2,44.8,-64.1,30,-67.2,14.2C-70.3,-1.6,-68.6,-18.4,-60.7,-30.7C-52.8,-43,-38.7,-50.8,-24.2,-57.2C-9.7,-63.6,5.2,-68.6,20.7,-70.2C36.2,-71.8,51.2,-70.2,44.8,-67.2Z" transform="translate(100 100)" />
+        </svg>
+        <div className="relative z-10 text-center max-w-3xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
+            Solutions for Your Business
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-xl text-muted-foreground mb-8"
+          >
+            Discover how Bizcore empowers South African businesses with creative digital solutions and a proven process.
+          </motion.p>
+        </div>
+      </SectionContainer>
+
+      {/* Why Bizcore Section */}
+      <SectionContainer>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center mb-6"
+        >
+          Why Choose Bizcore?
+        </motion.h2>
+        <p className="text-center text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+          Bizcore is your partner for digital growth. We combine local knowledge, innovative thinking, and dedicated support to help your business thrive.
+        </p>
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-8">
+          {whyBizcore.map((item) => (
+            <div key={item.title} className="bg-card/80 border rounded-2xl p-8 text-center shadow-md">
+              <div className="mb-4 flex justify-center">{item.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+              <p className="text-muted-foreground">{item.description}</p>
             </div>
-            
-            {/* Case Studies Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredCaseStudies.map((item) => (
-                <Link 
-                  key={item.id} 
-                  to={item.link}
-                  className="group flex flex-col bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
-                >
-                  <div className="relative overflow-hidden aspect-[16/9]">
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <span className="text-sm font-medium text-primary mb-2">
-                      {item.category}
-                    </span>
-                    <h3 className="text-xl font-bold mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 flex-grow">
-                      {item.description}
-                    </p>
-                    {/*<span className="inline-flex items-center text-primary font-medium group-hover:underline mt-2">
-                      View Case Study
-                      <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>*/}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* CTA Section */}
-        <section className="py-20 px-6 md:px-10 bg-primary/5">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Be Our Next Success Story?</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Contact us today to discuss how we can help transform your digital presence and achieve your business goals.
-            </p>
-            <Link
-              to="/contact"
-              className="button-hover-effect inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2"
+          ))}
+        </div>
+        <div className="text-center">
+          <Button asChild size="lg">
+            <Link to="/contact">Start Your Journey with Bizcore</Link>
+          </Button>
+        </div>
+      </SectionContainer>
+
+      {/* Our Process Section */}
+      <SectionContainer>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center mb-12"
+        >
+          Our Process
+        </motion.h2>
+        <motion.div
+          className="flex flex-col md:flex-row justify-center items-center gap-8"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {processSteps.map((step, idx) => (
+            <motion.div
+              key={step.title}
+              className="bg-card/80 border rounded-2xl p-8 flex-1 min-w-[220px] text-center shadow-md"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
             >
-              Start a Project
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </div>
-        </section>
-      </main>
-      <Footer />
+              <div className="mb-4 flex justify-center">{step.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+              <p className="text-muted-foreground">{step.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </SectionContainer>
+
+      {/* Sample Solutions Section */}
+      <SectionContainer>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center mb-12"
+        >
+          Sample Solutions
+        </motion.h2>
+        <motion.div
+          className="grid md:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {sampleSolutions.map((solution, idx) => (
+            <motion.div
+              key={solution.title}
+              className="bg-card/80 border rounded-2xl p-8 text-center shadow-md"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="mb-4 flex justify-center">{solution.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{solution.title}</h3>
+              <p className="text-muted-foreground">{solution.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </SectionContainer>
+
+      {/* Call to Action Section */}
+      <SectionContainer>
+        <div className="text-center max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Success Story?</h2>
+          <p className="text-muted-foreground mb-8">
+            Let's talk about your goals and how we can help you achieve them. Whether you're a local business, startup, or organization, we're here to help you grow.
+          </p>
+          <Button asChild size="lg">
+            <Link to="/contact">Get in Touch</Link>
+          </Button>
+        </div>
+      </SectionContainer>
     </div>
   );
 };
 
-export default CaseStudies;
+export default Solutions;

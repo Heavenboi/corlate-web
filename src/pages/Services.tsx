@@ -1,180 +1,215 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { SectionTitle } from "@/components/ui/SectionTitle";
-import { ArrowRight, BarChart, Code, Globe, Mail, Megaphone, Smartphone } from "lucide-react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Code, Globe, Shield, Palette, ArrowRight, Smartphone, Search, BarChart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Contact } from "@/components/home/Contact";
+import { SectionContainer } from "@/components/layout/Container";
 
 const services = [
   {
-    id: "digital-marketing",
-    icon: <Megaphone className="h-12 w-12 text-primary mb-5" />,
-    title: "Digital Marketing",
-    description: "Strategic marketing campaigns that drive traffic, engagement, and conversions for your business. Our experts develop tailored strategies to boost your online presence and ROI.",
+    icon: <Code className="h-6 w-6" />,
+    title: "Website Development",
+    description: "Custom-built, responsive websites that drive conversions and growth for your business.",
     features: [
-      "Search Engine Marketing (SEM)",
-      "Social Media Advertising",
-      "Email Marketing Campaigns",
-      "Content Strategy Development",
-      "Performance Analytics & Reporting"
-    ],
-    link: "/services/digital-marketing"
-  },
-  {
-    id: "web-development",
-    icon: <Code className="h-12 w-12 text-primary mb-5" />,
-    title: "Web Development",
-    description: "Custom website development with cutting-edge technology and responsive design. We build beautiful, functional websites that drive results for your business.",
-    features: [
-      "Custom Website Design & Development",
+      "Custom Web Applications",
       "E-commerce Solutions",
       "Content Management Systems",
-      "Web Application Development",
-      "Maintenance & Support"
+      "Progressive Web Apps"
     ],
-    link: "/services/web-development"
+    href: "/services/web-development"
   },
   {
-    id: "seo",
-    icon: <BarChart className="h-12 w-12 text-primary mb-5" />,
+    icon: <Globe className="h-6 w-6" />,
+    title: "Digital Marketing",
+    description: "Strategic online marketing solutions to increase your brand visibility and reach.",
+    features: [
+      "Social Media Marketing",
+      "Email Marketing Campaigns",
+      "Content Marketing",
+      "PPC Advertising"
+    ],
+    href: "/services/digital-marketing"
+  },
+  {
+    icon: <Shield className="h-6 w-6" />,
+    title: "Tech Support & IT",
+    description: "Comprehensive IT support services to keep your business running smoothly.",
+    features: [
+      "24/7 Technical Support",
+      "Network Security",
+      "Cloud Solutions",
+      "Data Backup & Recovery"
+    ],
+    href: "/services/tech-support"
+  },
+  {
+    icon: <Palette className="h-6 w-6" />,
+    title: "Design & Software",
+    description: "Beautiful designs and custom software solutions tailored to your needs.",
+    features: [
+      "UI/UX Design",
+      "Brand Identity",
+      "Custom Software Development",
+      "Mobile Applications"
+    ],
+    href: "/services/design-software"
+  },
+  {
+    icon: <Search className="h-6 w-6" />,
     title: "SEO Optimization",
-    description: "Improve your search engine rankings and drive organic traffic to your website. Our comprehensive SEO strategies help your business get found online.",
+    description: "Improve your search engine rankings and drive organic traffic to your website.",
     features: [
-      "Keyword Research & Analysis",
-      "On-Page SEO Optimization",
-      "Technical SEO Improvements",
-      "Link Building Strategies",
-      "Local SEO for Business Growth"
+      "Keyword Research",
+      "On-Page SEO",
+      "Technical SEO",
+      "Link Building"
     ],
-    link: "/services/seo"
+    href: "/services/seo"
   },
   {
-    id: "social-media",
-    icon: <Globe className="h-12 w-12 text-primary mb-5" />,
-    title: "Social Media Marketing",
-    description: "Build brand awareness and engage with your audience across social media platforms. We help you connect with your customers where they spend their time online.",
-    features: [
-      "Social Media Strategy Development",
-      "Content Creation & Curation",
-      "Community Management",
-      "Influencer Partnerships",
-      "Social Media Analytics"
-    ],
-    link: "/services/social-media"
-  },
-  {
-    id: "content-marketing",
-    icon: <Mail className="h-12 w-12 text-primary mb-5" />,
-    title: "Content Marketing",
-    description: "Create valuable content that resonates with your audience and drives business growth. Our content strategies help establish your brand as an industry leader.",
-    features: [
-      "Content Strategy Development",
-      "Blog Writing & Management",
-      "Whitepaper & E-book Creation",
-      "Video Content Production",
-      "Content Distribution & Promotion"
-    ],
-    link: "/services/content-marketing"
-  },
-  {
-    id: "mobile-apps",
-    icon: <Smartphone className="h-12 w-12 text-primary mb-5" />,
+    icon: <Smartphone className="h-6 w-6" />,
     title: "Mobile App Development",
-    description: "Cross-platform mobile applications that provide seamless user experiences. We build apps that help your business reach customers on any device.",
+    description: "Native and cross-platform mobile applications for iOS and Android.",
     features: [
-      "iOS & Android App Development",
-      "Cross-Platform Solutions",
-      "UI/UX Design for Mobile",
-      "App Store Optimization",
-      "App Maintenance & Updates"
+      "iOS Development",
+      "Android Development",
+      "React Native Apps",
+      "App Store Optimization"
     ],
-    link: "/services/mobile-apps"
+    href: "/services/mobile-apps"
   }
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
 const Services = () => {
-  // Smooth scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-  
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main>
-        {/* Hero Section */}
-        <section className="py-20 px-6 md:px-10 bg-secondary/30">
-          <div className="max-w-7xl mx-auto">
-            <SectionTitle 
-              eyebrow="Our Services" 
-              title="Comprehensive Digital Solutions for Your Business"
-              description="We offer a wide range of digital services to help your business grow and thrive in the online space. Our team of experts is dedicated to delivering exceptional results."
-              align="center"
-              titleSize="large"
-            />
-          </div>
-        </section>
-        
-        {/* Services List */}
-        <section className="py-20 px-6 md:px-10 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 gap-16">
-              {services.map((service, index) => (
-                <div 
-                  key={service.id}
-                  className={`flex flex-col ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-10 items-center`}
-                >
-                  <div className="w-full lg:w-1/2">
-                    <div className="bg-primary/5 p-12 rounded-xl flex items-center justify-center">
-                      {service.icon}
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-1/2">
-                    <h3 className="text-3xl font-bold mb-4">{service.title}</h3>
-                    <p className="text-muted-foreground text-lg mb-6">{service.description}</p>
-                    
-                    <h4 className="font-medium text-lg mb-3">Key Features:</h4>
-                    <ul className="space-y-2 mb-8">
-                      {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <Link
-                      to={service.link}
-                      className="button-hover-effect inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2"
-                    >
-                      Learn More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* CTA Section */}
-        <section className="py-20 px-6 md:px-10 bg-primary/5">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Elevate Your Digital Presence?</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Contact us today for a free consultation and let our experts help you achieve your digital goals.
+    <div>
+      {/* Hero Section */}
+      <SectionContainer className="py-20 md:py-28">
+        <div className="relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Comprehensive Digital Solutions
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              From web development to digital marketing, we offer end-to-end services to help your business thrive in the digital age.
             </p>
-            <Link
-              to="/contact"
-              className="button-hover-effect inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2"
-            >
-              Get Started
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+            <Button asChild size="lg">
+              <Link to="/contact">Get Started</Link>
+            </Button>
+          </motion.div>
+        </div>
+      </SectionContainer>
+
+      {/* Services List Section */}
+      <section className="py-16 md:py-24">
+        <div className="container px-4 md:px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <div
+                key={service.title}
+                className="p-6 rounded-xl bg-background border border-border flex flex-col items-center text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-primary/40 hover:scale-105 cursor-pointer"
+              >
+                <div className="mb-4">{service.icon}</div>
+                <h3 className="font-semibold mb-2 text-primary text-lg">{service.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{service.description}</p>
+                <Link to={service.href} className="inline-flex items-center text-primary font-medium hover:underline group transition-colors">
+                  Learn More
+                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            ))}
           </div>
-        </section>
-      </main>
-      <Footer />
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 md:py-24 bg-muted/50">
+        <div className="container px-4 md:px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center"
+            >
+              <div className="text-3xl font-bold text-primary mb-2">200+</div>
+              <div className="text-muted-foreground">Projects Completed</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="text-3xl font-bold text-primary mb-2">95%</div>
+              <div className="text-muted-foreground">Client Satisfaction</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="text-3xl font-bold text-primary mb-2">5+</div>
+              <div className="text-muted-foreground">Years Experience</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-center"
+            >
+              <div className="text-3xl font-bold text-primary mb-2">24/7</div>
+              <div className="text-muted-foreground">Support Available</div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 md:py-24">
+        <div className="container px-4 md:px-6">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p className="text-muted-foreground mb-8">
+              Let's discuss how our services can help your business grow and succeed in the digital world.
+            </p>
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 focus:ring-2 focus:ring-primary/40 focus:outline-none transition-transform hover:scale-105 shadow-md">
+              <Link to="/contact" className="inline-flex items-center">
+                Contact Us
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <Contact />
     </div>
   );
 };

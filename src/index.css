@@ -1,3 +1,6 @@
+:root {
+  --border: 229 231 235; /* Light gray, matches Tailwind's default border */
+}
 
 @tailwind base;
 @tailwind components;
@@ -37,35 +40,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 225 25% 20%;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 225 25% 20%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 225 25% 20%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 260 70% 40%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 220 40% 15%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 84 100% 50%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 215 25% 95%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 260 70% 95%;
-    --accent-foreground: 260 80% 25%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 260 70% 40%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 224 76% 48%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
   * {
@@ -74,7 +77,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
   
   ::selection {
@@ -116,8 +119,8 @@
 .bg-grid {
   background-size: 100px 100px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 .mask-radial-faded {
@@ -129,7 +132,7 @@
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: rgba(138, 43, 226, 0.15);
+  background: rgba(25, 118, 210, 0.15);
   filter: blur(90px);
   z-index: -1;
 }
@@ -147,7 +150,7 @@
 
 .card-hover-effect:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .animate-in {
@@ -184,4 +187,107 @@
 
 .delayed-500 {
   animation-delay: 500ms;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30 transition-colors;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-background/80 backdrop-blur-lg border border-border/50 shadow-lg;
+}
+
+/* Custom components */
+.section-padding {
+  @apply py-16 md:py-24 lg:py-32;
+}
+
+.container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom button styles */
+.btn {
+  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
+}
+
+.btn-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+.btn-outline {
+  @apply border border-input hover:bg-accent hover:text-accent-foreground;
+}
+
+.btn-ghost {
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+.btn-link {
+  @apply underline-offset-4 hover:underline text-primary;
+}
+
+/* Custom card styles */
+.card {
+  @apply rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden transition-all hover:shadow-md;
+}
+
+.card-header {
+  @apply flex flex-col space-y-1.5 p-6;
+}
+
+.card-title {
+  @apply text-2xl font-semibold leading-none tracking-tight;
+}
+
+.card-description {
+  @apply text-sm text-muted-foreground;
+}
+
+.card-content {
+  @apply p-6 pt-0;
+}
+
+.card-footer {
+  @apply flex items-center p-6 pt-0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Gradient text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80;
+}
+
+/* Custom focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background rounded-sm transition-shadow;
 }
