@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, Code, Globe, Shield, Palette, CheckCircle2, Users, Target, Cpu, Cloud, Wifi, Code2, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Contact } from "@/components/home/Contact";
+<<<<<<< HEAD
+=======
+import lottie from "lottie-web";
+>>>>>>> 8e9894a8c3280e5ed6f21b835329f7016779e2a3
 
 const features = [
   {
@@ -214,7 +218,21 @@ const Index = () => {
 
   useEffect(() => {
     if (animationContainer.current) {
+<<<<<<< HEAD
       // Placeholder for the removed lottie usage
+=======
+      const anim = lottie.loadAnimation({
+        container: animationContainer.current,
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "https://lottie.host/a92e6f04-1416-491c-9e81-823fa156d7f9/RLIliDfaYZ.lottie"
+      });
+
+      return () => {
+        anim.destroy();
+      };
+>>>>>>> 8e9894a8c3280e5ed6f21b835329f7016779e2a3
     }
   }, []);
 
